@@ -1,0 +1,17 @@
+setwd("/Users/notjavo/Desktop/UVA R Work")
+library(stargazer)
+library(ggplot2)
+remove(list=ls())
+
+# Read the CSV file into a data frame
+mydf = read.csv("cpudata.csv")
+
+# Filter the data to include only the major three operating systems
+filtered_mydf <- subset(mydf, operatingsys %in% c("Any Linux", "MacOS", "Windows 10", "Windows"))
+
+# Create histogram using ggplot2
+ggplot(filtered_mydf, aes(x = operatingsys)) +
+  geom_bar() +
+  xlab("Operating System") +
+  ylab("Count") +
+  ggtitle("Histogram of Major Operating Systems")
